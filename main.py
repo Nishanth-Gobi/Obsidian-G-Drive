@@ -25,6 +25,15 @@ def is_excluded(file_path, paths_to_exclude):
     return False
 
 
+def delete_images(image_paths):
+    for image_path in image_paths:
+        try:
+            os.remove(image_path)
+            print(f'Deleted {image_path}')
+        except OSError as e:
+            print(f'Error deleting {image_path}: {e}')
+
+
 upload_file_list = []
 image_files = []
 
@@ -54,4 +63,6 @@ for key, value in uploaded_files.items():
     replacement_string = 'https://drive.google.com/uc?id=' + value
     replace_string_in_directory(base_path, key, replacement_string)
 
-print("upload file list: ", upload_file_list)
+
+# remove images from the local vault
+delete_images(upload_file_list)

@@ -1,11 +1,26 @@
 import os
+import re
+
+def path_string(matched_line):    
+    match = re.search(r"(.*)!\[(?P<text>[^\]]*)\]\((?P<path>[^)]*)\)(.*)", matched_line)
+    if match:
+        path = match.group("path")
+        return path
+    return None
+
 
 def replace_string_in_file(file_path, search_string, replace_string):
     with open(file_path, 'r') as file:
-        content = file.read()
-    content = content.replace(search_string, replace_string)
+        content = file.readlines()
+    for i, line in enumerate(content):
+        if search_string in line:
+            print(f"\nline: {line} \nsearch_string: {search_string} \nreplace_string: {replace_string}")
+            image_path = path_string(line)
+            if image_path:
+                content[i] = line.replace(image_path, replace_string)
     with open(file_path, 'w') as file:
-        file.write(content)
+        file.writelines(content)
+
 
 def replace_string_in_directory(directory_path, search_string, replace_string):
     for item in os.listdir(directory_path):
@@ -14,4 +29,3 @@ def replace_string_in_directory(directory_path, search_string, replace_string):
             replace_string_in_directory(item_path, search_string, replace_string)
         elif os.path.isfile(item_path) and item_path.endswith('.md'):
             replace_string_in_file(item_path, search_string, replace_string)
-            print(f"Replaced '{search_string}' with '{replace_string}' in file: {item_path}")

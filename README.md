@@ -50,9 +50,7 @@ To use this script, follow the steps below:
 Contributions to this project are always welcome. If you have any suggestions or improvements, please open an issue or submit a pull request.
 
 ---
+
 ## License
 
 This project is licensed under the MIT License.
-
-
-
