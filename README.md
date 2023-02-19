@@ -53,4 +53,4 @@ Contributions to this project are always welcome. If you have any suggestions or
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [GNU GPLv3 License](https://github.com/Nishanth-Gobi/Obsidian-G-Drive/blob/main/license).
