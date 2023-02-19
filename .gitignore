@@ -1,0 +1,6 @@
+client_secrets.json
+config.yml
+settings.yaml
+.idea
+__pycache__
+venv
